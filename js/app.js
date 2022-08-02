@@ -1,17 +1,17 @@
 
 const numeriCasuali = numeriRandom()
-const numeriUtente = numeriInseritiUtente()
+const numeriUtente = []
+
 
 alert(numeriCasuali)
-// console.log(numeriUtente)
+console.dir(numeriCasuali)
+console.log(numeriUtente)
 
-
-setTimeout(numeriInseritiUtente, 3000) 
 
 function numeriRandom () {
     const numeriCasuali = []
     while(numeriCasuali.length < 5) {
-        const num = getRandomIntInclusive(1, 100)
+        var num = getRandomIntInclusive(1, 100)
         if(!numeriCasuali.includes(num)){
             numeriCasuali.push(num)
         }
@@ -25,11 +25,20 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
  
+
+setTimeout(numeriInseritiUtente, 3000) 
+
 function numeriInseritiUtente() {
-    const numeriUtente = []
     while(numeriUtente.length < 5) {
-        const numUtente = prompt("Inserisci 5 numeri, uno alla volta")
+        const numUtente = parseInt(prompt("Inserisci 5 numeri, uno alla volta"))
         numeriUtente.push(numUtente)
     }
     return numeriUtente
 }
+
+//-----------------------------------------------------------------------------------------------------------------
+
+
+const intersection = numeriCasuali.filter(value => numeriUtente.includes(value)).filter((value, index, self) => self.indexOf(value) === index);
+
+console.log(intersection)
