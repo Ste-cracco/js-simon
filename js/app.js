@@ -1,17 +1,18 @@
 
 const numeriCasuali = numeriRandom()
 const numeriUtente = []
+const numeriCorrispondenti = []
 
 
 alert(numeriCasuali)
-console.dir(numeriCasuali)
-console.log(numeriUtente)
+console.log(numeriCasuali)
+
 
 
 function numeriRandom () {
     const numeriCasuali = []
     while(numeriCasuali.length < 5) {
-        var num = getRandomIntInclusive(1, 100)
+        const num = getRandomIntInclusive(1, 100)
         if(!numeriCasuali.includes(num)){
             numeriCasuali.push(num)
         }
@@ -26,19 +27,23 @@ function getRandomIntInclusive(min, max) {
 }
  
 
-setTimeout(numeriInseritiUtente, 3000) 
+setTimeout(numeriInseritiUtente, 10000) 
 
 function numeriInseritiUtente() {
     while(numeriUtente.length < 5) {
         const numUtente = parseInt(prompt("Inserisci 5 numeri, uno alla volta"))
-        numeriUtente.push(numUtente)
+        numeriUtente.push(numUtente)        
+    }    
+
+    for (let i = 0; i < numeriUtente.length; i++) {
+        if(numeriUtente[i] === numeriCasuali[i]) {
+            numeriCorrispondenti.push(numeriUtente[i])
+        }
     }
-    return numeriUtente
+    console.log("I numeri inseriti sono:", numeriUtente)
+    console.log("Sono stati indovinati:", numeriCorrispondenti.length, "numeri")
+    console.log("Numeri corrispondenti:", numeriCorrispondenti)
 }
 
-//-----------------------------------------------------------------------------------------------------------------
 
 
-const intersection = numeriCasuali.filter(value => numeriUtente.includes(value)).filter((value, index, self) => self.indexOf(value) === index);
-
-console.log(intersection)
